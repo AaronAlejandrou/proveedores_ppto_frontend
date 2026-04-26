@@ -110,7 +110,7 @@ const validateAdditionalFile = (file: File): ValidationResult => {
 
   // Validar MIME type (todos los MIME types permitidos para adicionales)
   const allAllowedMimes = Object.values(ADDITIONAL_MIME_TYPES).flat();
-  if (!allAllowedMimes.includes(file.type)) {
+  if (!allAllowedMimes.includes(file.type as any)) {
     return {
       valid: false,
       error: `Tipo de archivo no permitido. Solo: ${ADDITIONAL_EXTENSIONS.join(', ')}`,
