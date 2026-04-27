@@ -110,7 +110,7 @@ export interface ValidationResult {
  */
 export interface FileValidationConfig {
   /** Array de MIME types permitidos para este campo */
-  allowedMimes: string[];
+  allowedMimes: readonly string[];
   
   /** Tamaño máximo en bytes (15MB = 15 * 1024 * 1024) */
   maxSize: number;
@@ -200,9 +200,10 @@ export const VALIDATION_CONFIGS: Record<string, FileValidationConfig> = {
     label: 'Archivo PDF de Factura',
   },
   cdr_xml: {
-    allowedMimes: OBLIGATORY_MIME_TYPES.xml,
+    // CDR acepta PDF o XML (ambos son válidos)
+    allowedMimes: [...OBLIGATORY_MIME_TYPES.xml, ...OBLIGATORY_MIME_TYPES.pdf],
     maxSize: MAX_FILE_SIZE,
-    label: 'Archivo CDR XML',
+    label: 'Archivo CDR (PDF o XML)',
   },
 };
 

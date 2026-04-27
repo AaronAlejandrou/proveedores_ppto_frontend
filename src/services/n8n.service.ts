@@ -14,16 +14,18 @@ import type { WebhookResponse } from '@/types';
 // ============================================================================
 
 /**
- * URL base del webhook n8n para ver la Orden de Compra (PDF)
- * Devuelve directamente el binario del PDF
+ * URL del webhook n8n para ver la Orden de Compra (PDF)
+ * Dev:  /n8n/webhook-test/ver-oc  (proxy Vite, sin CORS)
+ * Prod: http://10-43-5-105.nip.io:5678/webhook/ver-oc
  */
-const N8N_VIEW_OC_URL = 'http://10-43-5-105.nip.io:5678/webhook-test/ver-oc';
+const N8N_VIEW_OC_URL = import.meta.env.VITE_N8N_VIEW_OC_URL as string;
 
 /**
  * URL del webhook n8n para subir documentación
- * Recibe FormData con archivos y devuelve JSON con resultado
+ * Dev:  /n8n/webhook-test/subir-documentacion  (proxy Vite)
+ * Prod: http://10-43-5-105.nip.io:5678/webhook/subir-documentacion
  */
-const N8N_SUBMIT_DOCS_URL = 'http://10-43-5-105.nip.io:5678/webhook-test/subir-documentacion';
+const N8N_SUBMIT_DOCS_URL = import.meta.env.VITE_N8N_SUBMIT_DOCS_URL as string;
 
 /**
  * Timeout para la petición GET del PDF (30 segundos)

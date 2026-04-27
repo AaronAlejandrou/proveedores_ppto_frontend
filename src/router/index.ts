@@ -4,7 +4,7 @@ import AdminLayout from "../layouts/AdminLayout.vue";
 import PublicProviderLayout from "../layouts/PublicProviderLayout.vue";
 import DashboardView from "../views/admin/DashboardView.vue";
 import LoginView from "../views/admin/LoginView.vue";
-import ProviderAccessView from "../views/provider/ProviderAccessView.vue";
+import PortalView from "../views/provider/PortalView.vue";
 import ProvidersView from "../views/admin/ProvidersView.vue";
 import ProviderDetailView from "../views/admin/ProviderDetailView.vue";
 import ProviderFormView from "../views/admin/ProviderFormView.vue";
@@ -83,8 +83,8 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: "",
-        name: "provider-access",
-        component: ProviderAccessView,
+        name: "provider-portal",
+        component: PortalView,
       },
     ],
   },
