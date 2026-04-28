@@ -142,8 +142,8 @@ const extIcon = (name: string) => name.endsWith('.pdf') ? '📄' : name.endsWith
           <span class="uf__toggle-dot"></span>SÍ
         </button>
       </div>
-      <p v-if="emisionSunat === true" class="uf__hint uf__hint--ok">✓ Sin CDR requerido — SUNAT lo gestiona automáticamente</p>
-      <p v-else-if="emisionSunat === false" class="uf__hint uf__hint--info">ℹ Puede adjuntar su CDR (PDF o XML) si lo tiene disponible. De lo contrario, nuestro equipo lo gestionará automáticamente.</p>
+      <p v-if="emisionSunat === true" class="uf__hint uf__hint--ok">Sin CDR requerido </p>
+      <p v-else-if="emisionSunat === false" class="uf__hint uf__hint--info">Puede adjuntar su CDR (PDF o XML) si lo tiene disponible. De lo contrario, nuestro equipo lo gestionará automáticamente.</p>
       <p v-else class="uf__hint uf__hint--req">Seleccione una opción para continuar</p>
     </div>
 
@@ -171,7 +171,7 @@ const extIcon = (name: string) => name.endsWith('.pdf') ? '📄' : name.endsWith
             <span class="uf__drop-hint">PDF · máx. 15 MB</span>
           </template>
           <template v-else>
-            <span class="uf__file-icon">{{ extIcon(facturaPdf.file.name) }}</span>
+            <!--<span class="uf__file-icon">{{ extIcon(facturaPdf.file.name) }}</span>-->
             <span class="uf__file-name">{{ facturaPdf.file.name }}</span>
             <span class="uf__file-size">{{ fmt(facturaPdf.file.size) }}</span>
             <button type="button" class="uf__clear-btn" @click.prevent="clearFile('factura_pdf')" :disabled="isSubmitting">✕</button>
@@ -197,7 +197,6 @@ const extIcon = (name: string) => name.endsWith('.pdf') ? '📄' : name.endsWith
             <span class="uf__drop-hint">XML · máx. 15 MB</span>
           </template>
           <template v-else>
-            <span class="uf__file-icon">📋</span>
             <span class="uf__file-name">{{ facturaXml.file.name }}</span>
             <span class="uf__file-size">{{ fmt(facturaXml.file.size) }}</span>
             <button type="button" class="uf__clear-btn" @click.prevent="clearFile('factura_xml')" :disabled="isSubmitting">✕</button>
@@ -224,7 +223,6 @@ const extIcon = (name: string) => name.endsWith('.pdf') ? '📄' : name.endsWith
               <span class="uf__drop-hint">XML · máx. 15 MB</span>
             </template>
             <template v-else>
-              <span class="uf__file-icon">🛡️</span>
               <span class="uf__file-name">{{ cdrXml.file.name }}</span>
               <span class="uf__file-size">{{ fmt(cdrXml.file.size) }}</span>
             </template>
