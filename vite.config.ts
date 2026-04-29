@@ -2,7 +2,8 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { resolve } from "path";
 
-const N8N_HOST = 'http://10-43-5-105.nip.io:5678';
+//const N8N_HOST = 'http://10-43-5-105.nip.io:5678';
+const N8N_HOST = 'https://interseguro-workflows.app.n8n.cloud';
 
 export default defineConfig({
   plugins: [vue()],
