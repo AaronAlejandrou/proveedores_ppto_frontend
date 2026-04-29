@@ -15,6 +15,7 @@ export default defineConfig({
   server: {
     host: "0.0.0.0",
     port: 5173,
+    /*
     proxy: {
       /**
        * Proxy /n8n/* → n8n server (elimina el prefijo /n8n)
@@ -29,5 +30,6 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/n8n/, ''),
       },
     },
+    */
   },
 });

@@ -15,15 +15,15 @@ import type { WebhookResponse } from '@/types';
 
 /**
  * URL del webhook n8n para ver la Orden de Compra (PDF)
- * Dev:  /n8n/webhook-test/ver-oc  (proxy Vite, sin CORS)
- * Prod: http://10-43-5-105.nip.io:5678/webhook/ver-oc
+ * Dev:  https://interseguro-workflows.app.n8n.cloud/webhook-test/ver-oc
+ * Prod: https://interseguro-workflows.app.n8n.cloud/webhook/ver-oc
  */
 const N8N_VIEW_OC_URL = import.meta.env.VITE_N8N_VIEW_OC_URL as string;
 
 /**
  * URL del webhook n8n para subir documentación
- * Dev:  /n8n/webhook-test/subir-documentacion  (proxy Vite)
- * Prod: http://10-43-5-105.nip.io:5678/webhook/subir-documentacion
+ * Dev:  https://interseguro-workflows.app.n8n.cloud/webhook-test/subir-documentacion
+ * Prod: https://interseguro-workflows.app.n8n.cloud/webhook/subir-documentacion
  */
 const N8N_SUBMIT_DOCS_URL = import.meta.env.VITE_N8N_SUBMIT_DOCS_URL as string;
 
