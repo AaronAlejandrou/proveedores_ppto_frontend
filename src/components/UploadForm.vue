@@ -96,11 +96,9 @@ const isFormValid = computed(() => {
   if (!facturaPdf.value.file || !facturaXml.value.file) return false;
   if (!facturaPdf.value.validation.valid || !facturaXml.value.validation.valid) return false;
   
-  if (emisionSunat.value === true) {
+  if (emisionSunat.value === false) {
     if (!cdrXml.value.file) return false;
     if (!cdrXml.value.validation.valid) return false;
-  } else if (emisionSunat.value === false) {
-    if (cdrXml.value.file && !cdrXml.value.validation.valid) return false;
   }
 
   if (adicionales.value.some(a => !a.validation.valid)) return false;
@@ -115,7 +113,9 @@ const handleSubmit = () => {
   if (facturaXml.value.file) fd.append('factura_xml', facturaXml.value.file);
   fd.append('emision_sunat', emisionSunat.value ? 'true' : 'false');
   if (periodoSeleccionado.value) fd.append('periodo', periodoSeleccionado.value);
-  if (cdrXml.value.file) fd.append('cdr_xml', cdrXml.value.file);
+  if (emisionSunat.value === false && cdrXml.value.file) {
+    fd.append('cdr_xml', cdrXml.value.file);
+  }
   adicionales.value.forEach((a, i) => { if (a.file) fd.append(`adicional_${i + 1}`, a.file); });
   emit('submit', fd);
   isSubmitting.value = false;
@@ -165,8 +165,8 @@ const extIcon = (name: string) => name.endsWith('.pdf') ? '📄' : name.endsWith
           <span class="uf__toggle-dot"></span>SÍ
         </button>
       </div>
-      <p v-if="emisionSunat === true" class="uf__hint uf__hint--req">Debe adjuntar el archivo CDR obligatoriamente.</p>
-      <p v-else-if="emisionSunat === false" class="uf__hint uf__hint--info">Puede adjuntar su CDR (PDF o XML) si lo tiene disponible. De lo contrario, nuestro equipo lo gestionará automáticamente.</p>
+      <p v-if="emisionSunat === true" class="uf__hint uf__hint--ok">Sin CDR requerido.</p>
+      <p v-else-if="emisionSunat === false" class="uf__hint uf__hint--req">Debe adjuntar su CDR (PDF o XML) obligatoriamente.</p>
       <p v-else class="uf__hint uf__hint--req">Seleccione una opción para continuar</p>
     </div>
 
@@ -247,8 +247,8 @@ const extIcon = (name: string) => name.endsWith('.pdf') ? '📄' : name.endsWith
 
       <!-- CDR -->
       <Transition name="uf-fade">
-        <div v-if="emisionSunat !== null" class="uf__field">
-          <label class="uf__label">CDR <span v-if="emisionSunat === true" class="uf__req">*</span><span v-else class="uf__opt-tag">Opcional · PDF o XML</span></label>
+        <div v-if="emisionSunat === false" class="uf__field">
+          <label class="uf__label">CDR <span class="uf__req">*</span></label>
           <label
             class="uf__drop"
             :class="{ 'uf__drop--over': dragOver === 'cdr', 'uf__drop--loaded': cdrXml.file && cdrXml.validation.valid, 'uf__drop--error': cdrXml.file && !cdrXml.validation.valid }"
@@ -307,7 +307,7 @@ const extIcon = (name: string) => name.endsWith('.pdf') ? '📄' : name.endsWith
         <span v-if="emisionSunat === null">Seleccione la opción SUNAT para continuar</span>
         <span v-else-if="!periodoSeleccionado">Seleccione el periodo de facturación</span>
         <span v-else-if="!facturaPdf.file || !facturaXml.file">Adjunte la Factura PDF y XML</span>
-        <span v-else-if="emisionSunat === true && !cdrXml.file">Adjunte el archivo CDR obligatoriamente</span>
+        <span v-else-if="emisionSunat === false && !cdrXml.file">Adjunte el archivo CDR obligatoriamente</span>
         <span v-else>Corrija los errores antes de enviar</span>
       </div>
       <button type="button" class="uf__submit" :class="{ 'uf__submit--disabled': !isFormValid || isSubmitting }" :disabled="!isFormValid || isSubmitting" @click="handleSubmit">
