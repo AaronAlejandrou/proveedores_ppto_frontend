@@ -172,7 +172,7 @@ const partialMailto = computed(() => {
         <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
       </div>
       <h2 class="pv-state__title">Documentación recibida</h2>
-      <p class="pv-state__sub">Todos los archivos fueron validados y almacenados correctamente.<br>Su pago será procesado en las próximas 24–48 horas hábiles.</p>
+      <p class="pv-state__sub">Todos los archivos fueron validados y almacenados correctamente.<br>Revise su correo electrónico para obtener más información.</p>
       <button class="pv-btn pv-btn--outline" @click="handleRetry">Nuevo envío</button>
     </div>
 
